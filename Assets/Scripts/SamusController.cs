@@ -18,6 +18,8 @@ public class SamusController : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
+    public AudioSource cannonShoot;
+    public GameObject armAsset;
     [SerializeField] ParticleSystem beamCannon = null;
 
     // Update is called once per frame
@@ -60,6 +62,8 @@ public class SamusController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            cannonShoot.Play();
+            //armAsset.DOPunchPosition(new)
             beamCannon.Play();
         }
     }

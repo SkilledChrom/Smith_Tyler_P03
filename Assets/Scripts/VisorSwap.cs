@@ -14,6 +14,7 @@ public class VisorSwap : MonoBehaviour
 
     public GameObject combatVisor;
     public GameObject scanVisorA;
+    public GameObject scanVisorB;
 
     public GameObject armCannon;
 
@@ -29,7 +30,9 @@ public class VisorSwap : MonoBehaviour
         {
             case (StateMachine.Combat):
                 combatVisor.SetActive(true);
+                armCannon.SetActive(true);
                 scanVisorA.SetActive(false);
+                scanVisorB.SetActive(false);
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     Debug.Log("Changing to Scan");
@@ -39,30 +42,32 @@ public class VisorSwap : MonoBehaviour
 
             case (StateMachine.Scan):
                 combatVisor.SetActive(false);
+                armCannon.SetActive(false);
                 scanVisorA.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.E))
+                scanVisorB.SetActive(false);
+                if (Input.GetKeyDown(KeyCode.LeftShift))
                 {
                     Debug.Log("Changing to Scanning");
                     currentState = StateMachine.Scanning;
                 }
-                break;
-
-            case (StateMachine.Scanning):
-                scanVisorA.SetActive(false);
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     Debug.Log("Changing to Combat");
                     currentState = StateMachine.Combat;
                 }
                 break;
-        }
-    }
 
-    void SwapTheVisor()
-    {
-        Debug.Log("Swapped the Visor.");
-        combatVisor.SetActive(false);
-        scanVisorA.SetActive(true);
-        armCannon.SetActive(false);
+            case (StateMachine.Scanning):
+                scanVisorA.SetActive(false);
+                scanVisorB.SetActive(true);
+                Time.timeScale = 0;
+                if (Input.GetKeyUp(KeyCode.LeftShift))
+                {
+                    Debug.Log("Changing to Scan");
+                    Time.timeScale = 1;
+                    currentState = StateMachine.Scan;
+                }
+                break;
+        }
     }
 }
