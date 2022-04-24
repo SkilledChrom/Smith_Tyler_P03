@@ -18,6 +18,8 @@ public class SamusController : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
+    [SerializeField] ParticleSystem beamCannon = null;
+
     // Update is called once per frame
     void Update()
     {
@@ -55,5 +57,10 @@ public class SamusController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            beamCannon.Play();
+        }
     }
 }
