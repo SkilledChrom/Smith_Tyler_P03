@@ -9,7 +9,7 @@ public class SamusController : MonoBehaviour
     public float speed = 12f;
     public float gravity = -8;
     public float jumpHeight = 3;
-    public float sprintSpeed = 1;
+    //public float sprintSpeed = 1;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -33,14 +33,16 @@ public class SamusController : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * speed * sprintSpeed * Time.deltaTime);
+        //controller.Move(move * speed * sprintSpeed * Time.deltaTime);
+        controller.Move(move * speed * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        /*
+        (Input.GetKey(KeyCode.LeftShift))
         {
             sprintSpeed = 2;
         }
@@ -48,6 +50,7 @@ public class SamusController : MonoBehaviour
         {
             sprintSpeed = 1;
         }
+        */
 
         velocity.y += gravity * Time.deltaTime;
 
