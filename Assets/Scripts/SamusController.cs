@@ -63,7 +63,6 @@ public class SamusController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             cannonShoot.Play();
-            //armAsset.DOPunchPosition(new)
             beamCannon.Play();
         }
     }

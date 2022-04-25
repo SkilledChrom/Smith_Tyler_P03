@@ -16,6 +16,8 @@ public class VisorSwap : MonoBehaviour
     public GameObject scanVisorA;
     public GameObject scanVisorB;
 
+    public GameObject mainTextObject;
+
     public GameObject armCannon;
 
     void Start()
@@ -61,8 +63,11 @@ public class VisorSwap : MonoBehaviour
                 scanVisorA.SetActive(false);
                 scanVisorB.SetActive(true);
                 Time.timeScale = 0;
+                Cursor.lockState = CursorLockMode.None;
+
                 if (Input.GetKeyUp(KeyCode.LeftShift))
                 {
+                    Cursor.lockState = CursorLockMode.Locked;
                     Debug.Log("Changing to Scan");
                     Time.timeScale = 1;
                     currentState = StateMachine.Scan;
