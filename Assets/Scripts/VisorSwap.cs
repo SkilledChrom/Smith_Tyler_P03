@@ -23,6 +23,9 @@ public class VisorSwap : MonoBehaviour
     public GameObject backupTerminalA;
     public GameObject backupTerminalB;
 
+    public AudioSource forwardMenu;
+    public AudioSource backMenu;
+
     TerminalCheck terminalCheck;
 
     [SerializeField] private TextMeshProUGUI itemInfoText = null;
@@ -55,6 +58,7 @@ public class VisorSwap : MonoBehaviour
                 {
                     Debug.Log("Changing to Scan");
                     currentState = StateMachine.Scan;
+                    forwardMenu.Play();
                 }
                 break;
 
@@ -80,6 +84,7 @@ public class VisorSwap : MonoBehaviour
                 {
                     Debug.Log("Changing to Combat");
                     currentState = StateMachine.Combat;
+                    backMenu.Play();
                 }
                 break;
 
@@ -96,6 +101,7 @@ public class VisorSwap : MonoBehaviour
                     Time.timeScale = 1;
                     itemInfoText.text = "";
                     currentState = StateMachine.Scan;
+                    backMenu.Play();
                 }
                 break;
         }

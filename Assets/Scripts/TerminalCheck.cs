@@ -16,8 +16,10 @@ public class TerminalCheck : MonoBehaviour
     [SerializeField] Transform rayOrigin = null;
     [SerializeField] float _shootDistance = 30f;
 
-    public GameObject buttonA;
     public GameObject targetHit;
+
+    public AudioSource typeScan;
+    public AudioSource failScan;
 
     public string terminalTag;
 
@@ -38,24 +40,29 @@ public class TerminalCheck : MonoBehaviour
             {
                 case ("TypeA"):
                     _objectHit.collider.GetComponent<TerminalA>().ScanTerminalA();
+                    typeScan.Play();
                     Debug.Log("Type A is functional");
                     break;
                 case ("TypeB"):
                     _objectHit.collider.GetComponent<TerminalB>().ScanTerminalB();
+                    typeScan.Play();
                     Debug.Log("Type B is functional");
                     break;
                 case ("TypeC"):
                     _objectHit.collider.GetComponent<TerminalC>().ScanTerminalC();
+                    typeScan.Play();
                     Debug.Log("Type C is functional");
                     break;
                 default:
                     StartCoroutine(AnimateText());
+                    failScan.Play();
                     break;
             }
         }
         else
         {
             StartCoroutine(AnimateText());
+            failScan.Play();
         }
     }
 
