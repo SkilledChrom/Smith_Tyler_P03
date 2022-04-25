@@ -1,9 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TerminalCheck : MonoBehaviour
 {
+    [SerializeField] [TextArea] private string[] itemInfo = null;
+    [SerializeField] private float textSpeed = 0.01f;
+
+    [Header("UI Elements")]
+    [SerializeField] private TextMeshProUGUI itemInfoText = null;
+    private int currentDisplayingText = 0;
+
     [SerializeField] Camera _cameraController = null;
     [SerializeField] Transform rayOrigin = null;
     [SerializeField] float _shootDistance = 30f;
@@ -14,16 +22,6 @@ public class TerminalCheck : MonoBehaviour
     public string terminalTag;
 
     RaycastHit _objectHit;
-
-    void Update()
-    {
-        /*
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            FireCheck();
-        }
-        */
-    }
 
     public void FireCheck()
     {
@@ -50,7 +48,23 @@ public class TerminalCheck : MonoBehaviour
                     _objectHit.collider.GetComponent<TerminalC>().ScanTerminalC();
                     Debug.Log("Type C is functional");
                     break;
+                default:
+                    StartCoroutine(AnimateText());
+                    break;
             }
+        }
+        else
+        {
+            StartCoroutine(AnimateText());
+        }
+    }
+
+    IEnumerator AnimateText()
+    {
+        for (int i = 0; i < itemInfo[currentDisplayingText].Length + 1; i++)
+        {
+            itemInfoText.text = itemInfo[currentDisplayingText].Substring(0, i);
+            yield return new WaitForSecondsRealtime(textSpeed);
         }
     }
 }

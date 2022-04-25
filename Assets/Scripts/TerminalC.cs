@@ -12,10 +12,18 @@ public class TerminalC : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemInfoText = null;
     private int currentDisplayingText = 0;
 
+    public GameObject _morphBall;
+
+    private void Start()
+    {
+        _morphBall.SetActive(false);
+    }
+
     public void ScanTerminalC()
     {
         StartCoroutine(AnimateText());
         Debug.Log("Among Us");
+        _morphBall.SetActive(true);
     }
 
     IEnumerator AnimateText()
