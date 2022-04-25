@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class VisorSwap : MonoBehaviour
 {
@@ -16,14 +17,22 @@ public class VisorSwap : MonoBehaviour
     public GameObject scanVisorA;
     public GameObject scanVisorB;
 
-    public GameObject mainTextObject;
+    public GameObject terminalA;
+    public GameObject terminalB;
+    public GameObject terminalC;
+    public GameObject backupTerminalA;
+    public GameObject backupTerminalB;
+
+    TerminalCheck terminalCheck;
+
+    [SerializeField] private TextMeshProUGUI itemInfoText = null;
 
     public GameObject armCannon;
 
     void Start()
     {
         currentState = StateMachine.Combat;
-        //scanVisorA.SetActive(false);
+        terminalCheck = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<TerminalCheck>();
     }
 
     void Update()
@@ -35,6 +44,13 @@ public class VisorSwap : MonoBehaviour
                 armCannon.SetActive(true);
                 scanVisorA.SetActive(false);
                 scanVisorB.SetActive(false);
+
+                terminalA.SetActive(false);
+                terminalB.SetActive(false);
+                terminalC.SetActive(false);
+                backupTerminalA.SetActive(false);
+                backupTerminalB.SetActive(false);
+
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     Debug.Log("Changing to Scan");
@@ -47,9 +63,17 @@ public class VisorSwap : MonoBehaviour
                 armCannon.SetActive(false);
                 scanVisorA.SetActive(true);
                 scanVisorB.SetActive(false);
+
+                terminalA.SetActive(true);
+                terminalB.SetActive(true);
+                terminalC.SetActive(true);
+                backupTerminalA.SetActive(true);
+                backupTerminalB.SetActive(true);
+
                 if (Input.GetKeyDown(KeyCode.LeftShift))
                 {
-                    Debug.Log("Changing to Scanning");
+                    terminalCheck.FireCheck();
+                    //Debug.Log("Changing to Scanning");
                     currentState = StateMachine.Scanning;
                 }
                 if (Input.GetKeyDown(KeyCode.E))
@@ -70,6 +94,7 @@ public class VisorSwap : MonoBehaviour
                     Cursor.lockState = CursorLockMode.Locked;
                     Debug.Log("Changing to Scan");
                     Time.timeScale = 1;
+                    itemInfoText.text = "";
                     currentState = StateMachine.Scan;
                 }
                 break;

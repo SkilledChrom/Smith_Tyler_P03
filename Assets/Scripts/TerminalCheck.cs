@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class TerminalCheck : MonoBehaviour
 {
-    [SerializeField] Camera _cameraController;
-    [SerializeField] Transform rayOrigin;
-    [SerializeField] float _shootDistance = 15f;
+    [SerializeField] Camera _cameraController = null;
+    [SerializeField] Transform rayOrigin = null;
+    [SerializeField] float _shootDistance = 30f;
+
+    public GameObject buttonA;
+    public GameObject targetHit;
 
     public string terminalTag;
 
@@ -14,13 +17,15 @@ public class TerminalCheck : MonoBehaviour
 
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             FireCheck();
         }
+        */
     }
 
-    void FireCheck()
+    public void FireCheck()
     {
         Vector3 rayDirection = _cameraController.transform.forward;
 
@@ -34,12 +39,15 @@ public class TerminalCheck : MonoBehaviour
             switch (terminalTag)
             {
                 case ("TypeA"):
+                    _objectHit.collider.GetComponent<TerminalA>().ScanTerminalA();
                     Debug.Log("Type A is functional");
                     break;
                 case ("TypeB"):
+                    _objectHit.collider.GetComponent<TerminalB>().ScanTerminalB();
                     Debug.Log("Type B is functional");
                     break;
                 case ("TypeC"):
+                    _objectHit.collider.GetComponent<TerminalC>().ScanTerminalC();
                     Debug.Log("Type C is functional");
                     break;
             }

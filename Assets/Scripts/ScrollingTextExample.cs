@@ -5,11 +5,11 @@ using TMPro;
 
 public class ScrollingTextExample : MonoBehaviour
 {
-    [SerializeField] [TextArea] private string[] itemInfo;
+    [SerializeField] [TextArea] private string[] itemInfo = null;
     [SerializeField] private float textSpeed = 0.01f;
 
     [Header("UI Elements")]
-    [SerializeField] private TextMeshProUGUI itemInfoText;
+    [SerializeField] private TextMeshProUGUI itemInfoText = null;
     private int currentDisplayingText = 0;
 
     public void ActivateText()
@@ -25,6 +25,4 @@ public class ScrollingTextExample : MonoBehaviour
             yield return new WaitForSecondsRealtime(textSpeed);
         }
     }
-
-
 }

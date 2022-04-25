@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class TerminalC : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void ScanTerminalC()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("Among Us");
     }
 }
