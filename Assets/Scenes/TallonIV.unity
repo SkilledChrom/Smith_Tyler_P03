@@ -5125,8 +5125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemInfo:
-  - All Space Pirates are expected to report any Phazon-based mutations to Science
-    Team.
+  - 'Autopsy Report: Unit 686 deceased following a failure with the Morph Ball prototypes.'
   textSpeed: 0.015
   itemInfoText: {fileID: 1908802915}
 --- !u!114 &1487271812
@@ -6311,11 +6310,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 97dc6eeb8edd5be4d829941732a9ae19, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 78f0c6dcaf759784386da4b8e3721f08, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.371
-  m_Pitch: 1
-  Loop: 0
+  m_Volume: 0.285
+  m_Pitch: 1.2
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6357,7 +6356,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.225
       inSlope: 0
       outSlope: 0
       tangentMode: 0
